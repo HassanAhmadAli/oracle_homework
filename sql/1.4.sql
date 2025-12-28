@@ -1,0 +1,70 @@
+ALTER SESSION
+SET CURRENT_SCHEMA = homeworku;
+CREATE TABLE Customer (
+    CustomerID NUMBER PRIMARY KEY,
+    C_Name VARCHAR2(255),
+    PhoneNumber VARCHAR2(50),
+    Email VARCHAR2(50)
+);
+CREATE TABLE Location (
+    LocationID NUMBER PRIMARY KEY,
+    Name VARCHAR2(255),
+    Description VARCHAR2(255)
+);
+CREATE TABLE Occasion (
+    Occasion NUMBER PRIMARY KEY,
+    Description VARCHAR2(255)
+);
+CREATE TABLE ParkingSpace (
+    SpaceID NUMBER PRIMARY KEY,
+    LotNumber NUMBER,
+    vehicleSize VARCHAR2(10)
+);
+CREATE TABLE RestaurantTable (
+    TableID NUMBER PRIMARY KEY,
+    R_Row NUMBER,
+    Spot NUMBER,
+    LocationID NUMBER,
+    CONSTRAINT fk_table_loc FOREIGN KEY (LocationID) REFERENCES Location(LocationID)
+);
+CREATE TABLE Reservation (
+    CustomerID NUMBER,
+    ReservationDate DATE,
+    ReservationTime VARCHAR2(20),
+    Period NUMBER,
+    Occasion NUMBER,
+    Instructions VARCHAR2(255),
+    Token VARCHAR2(255),
+    AccessCode VARCHAR2(5),
+    -- added from later tasks (2.4)
+    ReservationEndTime VARCHAR2(20),
+    ReservationEndDate DATE,
+    --
+    CONSTRAINT pk_reservation PRIMARY KEY (CustomerID, ReservationDate),
+    CONSTRAINT fk_res_cust FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
+    CONSTRAINT fk_res_occ FOREIGN KEY (Occasion) REFERENCES Occasion(Occasion)
+);
+CREATE TABLE ReservedTable (
+    TableID NUMBER,
+    CustomerID NUMBER,
+    ReservationDate DATE,
+    ReserveTable CHAR(3),
+    CONSTRAINT pk_res_table PRIMARY KEY (TableID, CustomerID, ReservationDate),
+    CONSTRAINT fk_rt_tid FOREIGN KEY (TableID) REFERENCES RestaurantTable(TableID),
+    CONSTRAINT fk_rt_res FOREIGN KEY (CustomerID, ReservationDate) REFERENCES Reservation(CustomerID, ReservationDate)
+);
+CREATE TABLE ReservedParkingSpace (
+    SpaceID NUMBER,
+    CustomerID NUMBER,
+    ReservationDate DATE,
+    CONSTRAINT pk_res_park PRIMARY KEY (SpaceID, CustomerID, ReservationDate),
+    CONSTRAINT fk_rp_sid FOREIGN KEY (SpaceID) REFERENCES ParkingSpace(SpaceID),
+    CONSTRAINT fk_rp_res FOREIGN KEY (CustomerID, ReservationDate) REFERENCES Reservation(CustomerID, ReservationDate)
+);
+CREATE TABLE Cancellation (
+    CustomerID NUMBER,
+    ReservationDate DATE,
+    "Comment" VARCHAR2(255),
+    CONSTRAINT pk_cancel PRIMARY KEY (CustomerID, ReservationDate),
+    CONSTRAINT fk_canc_res FOREIGN KEY (CustomerID, ReservationDate) REFERENCES Reservation(CustomerID, ReservationDate)
+);

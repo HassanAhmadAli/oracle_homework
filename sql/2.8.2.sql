@@ -1,0 +1,8 @@
+SELECT
+    AuditID,
+    OperationDate,
+    OperationType,
+    OldValues_JSON AS Before_Modification,
+    NewValues_JSON AS After_Modification
+FROM Reservation_Audit
+WHERE OperationType = 'UPDATE';

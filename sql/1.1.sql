@@ -1,0 +1,5 @@
+CREATE SMALLFILE TABLESPACE homeworkts
+ DATAFILE
+    'C:\temp\homeworkts_01.dbf' SIZE 1000M,
+    'C:\temp\homeworkts_02.dbf' SIZE 500M,
+    'C:\temp\homeworkts_03.dbf' SIZE 500M;

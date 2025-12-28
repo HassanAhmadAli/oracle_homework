@@ -1,0 +1,3 @@
+CREATE USER homeworku IDENTIFIED BY hassan DEFAULT TABLESPACE homeworkts PROFILE homeworkpf;
+GRANT CONNECT,
+    RESOURCE TO homeworku;
