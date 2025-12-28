@@ -40,8 +40,6 @@
 ![2.2.fail.sql](md/2.2.fail.sql.md)
 ![](attachments/Pasted%20image%2020251228233529.png)
 
-
-
 ## 3. Prevent Overlapping reservations for tables 
 ![](md/2.3.sql.md)
 ![](attachments/Pasted%20image%2020251228233552.png)
@@ -70,8 +68,14 @@
 
 # 3. Multidimensional Databases
 
-Based on the previous 'Reservation Management' database you worked with, please design the appropriate `Multidimensional Schema` for a `Data Warehouse`, explaining the `Dimensions`, `Hierarchies`, and the `Type of Schema` used
-1.Based on the previous 'Reservation Management' database you worked with, please design the appropriate `Multidimensional Schema` for a `Data Warehouse`, explaining the `Dimensions`, `Hierarchies`, and the `Type of Schema` used. ![3.1.sql](md/3.1.sql.md)
+Designing the appropriate `Multidimensional Schema` for a `Data Warehouse`, explaining the `Dimensions`, `Hierarchies`, and the `Type of Schema` used
+![3.0.sql](md/3.0.sql.md)
+![](attachments/Pasted%20image%2020251229002226.png)
+### Populate the tables
+![3.0.populate.sql](md/3.0.populate.sql.md)
+![](attachments/Pasted%20image%2020251229003317.png)
+![3.0.call.sql](md/3.0.call.sql.md)
+![](attachments/Pasted%20image%2020251229003416.png)
 
 ## 1. `Partition` the Fact table in a way you deem appropriate and `justify` your choice. `Is it possible` for this partitioning to be `composite`? Explain that ![3.2.1.sql](md/3.2.1.sql.md) ![3.2.2.sql](md/3.2.2.sql.md)
 
