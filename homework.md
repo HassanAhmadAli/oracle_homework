@@ -30,7 +30,9 @@
 ## 1. Display the two most reserved locations ![](md/2.1.sql.md)![](attachments/Pasted%20image%2020251228233203.png)
 
 
-##  2. Prevent adding reservations where the time is between 2:00 AM and 10:00 AM ![](md/2.2.sql.md)![](attachments/Pasted%20image%2020251228233223.png)
+##  2. Prevent adding reservations where the time is between 2:00 AM and 10:00 AM 
+![](md/2.2.sql.md)
+![](attachments/Pasted%20image%2020251228233223.png)
 ### Successfull Insert
 ![2.2.success.sql](md/2.2.success.sql.md)
 ![](attachments/Pasted%20image%2020251228233308.png)
@@ -40,7 +42,9 @@
 
 
 
-## 3. Prevent Overlapping reservations for tables ![](md/2.3.sql.md)![](attachments/Pasted%20image%2020251228233552.png)
+## 3. Prevent Overlapping reservations for tables 
+![](md/2.3.sql.md)
+![](attachments/Pasted%20image%2020251228233552.png)
 ### Success
 ![2.3.success.sql](md/2.3.success.sql.md)
 ![](attachments/Pasted%20image%2020251228233651.png)
