@@ -69,20 +69,39 @@
 # 3. Multidimensional Databases
 
 Designing the appropriate `Multidimensional Schema` for a `Data Warehouse`, explaining the `Dimensions`, `Hierarchies`, and the `Type of Schema` used
-![3.0.sql](md/3.0.sql.md)
+![3.1.sql](md/3.1.sql.md)
+
 ![](attachments/Pasted%20image%2020251229002226.png)
 ### Populate the tables
-![3.0.populate.sql](md/3.0.populate.sql.md)
+![3.1.populate.sql](md/3.1.populate.sql.md)
+
 ![](attachments/Pasted%20image%2020251229003317.png)
-![3.0.call.sql](md/3.0.call.sql.md)
+![](md/3.1.call.sql.md)
 ![](attachments/Pasted%20image%2020251229003416.png)
 
-## 1. `Partition` the Fact table in a way you deem appropriate and `justify` your choice. `Is it possible` for this partitioning to be `composite`? Explain that ![3.2.1.sql](md/3.2.1.sql.md) ![3.2.2.sql](md/3.2.2.sql.md)
+## 2. `Partition` the Fact table
+![3.2.range.sql](md/3.2.range.sql.md)
+* ## Justification
+	* ### Massive Performance Improvement
+		- Data warehouse queries are almost always time-based , For a query analyzing a certain year like 2024 data, Oracle will **only read the `p_2024` partition**, completely ignoring the billions of rows that might exist in older partitions
+	* ### Simplified Data Management
+		* **Archiving/Deleting Old Data:**
+		* **Loading New Data**
+	* ### Improved Availability
+		* Maintenance tasks, like rebuilding an index, can be performed on a single partition while the rest of the table remains online and available for queries
+## also it is absolutely possible for the partitioning to be **composite**
+![3.2.composite.sql](md/3.2.composite.sql.md)
+### **How it Works**
+- 1. **Level 1 (Range):** The data is first divided by `ReservationDate` into yearly partitions (`p_2023`, `p_2024`).
+- 1. **Level 2 (List):** Within each year's partition, the data is then sub-divided based on a list of `LocationID` values. we have created specific subpartitions for high-traffic locations (1 and 2) and a default subpartition for all other locations.
 
-## 2. Build a `MATERIALIZED VIEW` that includes the `Customer Name` and the `Reservation Location`. The data in this view must update `incrementally` ![3.3.1.sql](md/3.3.1.sql.md) ![3.3.2.sql](md/3.3.2.sql.md)
+## 4. Show the Number of Reservations grouped by `(Location, Occasion, Customer)`
+![3.4.sql](md/3.4.sql.md)
+![](attachments/Pasted%20image%2020251229230844.png)
+## 5. `Rank` of every `Year` and every `Month` within that Year based on the Number of Reservations
+![3.5.sql](md/3.5.sql.md)
+![](attachments/Pasted%20image%2020251229231604.png)
 
-## 3. Show the `Number of Reservations` grouped by `(Location, Occasion, Customer)` and also by `(Location, Occasion)` ![3.4.sql](md/3.4.sql.md)
-
-## 4. `Rank` of every `Year` and every `Month within that Year` based on the `Number of Reservations` ![3.5.sql](md/3.5.sql.md)
-
-## 5. The company manager wants to know `which Occasions and Reservation Locations are correlated` (occur together) to use this information for estimating new occasions. `Suggest a suitable method` to find this relationship, then `implement it using Weka` ![3.6.sql](md/3.6.sql.md)
+## 6 
+![3.6.sql](md/3.6.sql.md)
+![](attachments/Pasted%20image%2020251229233741.png)

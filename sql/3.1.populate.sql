@@ -40,6 +40,7 @@ INSERT INTO Dim_Time (
         Year,
         Quarter,
         Month,
+        Week,
         Day,
         DayOfWeek
     )
@@ -48,6 +49,7 @@ SELECT ROWNUM,
     TO_NUMBER(TO_CHAR(d.FullDate, 'YYYY')),
     TO_NUMBER(TO_CHAR(d.FullDate, 'Q')),
     TO_NUMBER(TO_CHAR(d.FullDate, 'MM')),
+    TO_NUMBER(TO_CHAR(d.FullDate, 'IW')),
     TO_NUMBER(TO_CHAR(d.FullDate, 'DD')),
     TO_CHAR(d.FullDate, 'Day')
 FROM (

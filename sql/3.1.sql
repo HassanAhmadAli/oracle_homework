@@ -1,5 +1,3 @@
-```plsql
-
 -- Allow analyzing reservations over time
 CREATE TABLE Dim_Time (
     TimeID NUMBER PRIMARY KEY,
@@ -7,6 +5,7 @@ CREATE TABLE Dim_Time (
     Year NUMBER,
     Quarter NUMBER,
     Month NUMBER,
+    Week NUMBER,
     Day NUMBER,
     DayOfWeek VARCHAR2(15)
 );
@@ -40,5 +39,3 @@ CREATE TABLE Fact_Reservations (
     Duration_Minutes NUMBER,
     Reservation_Count NUMBER DEFAULT 1
 );
-/
-```
