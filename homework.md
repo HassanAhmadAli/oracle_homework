@@ -95,6 +95,10 @@ Designing the appropriate `Multidimensional Schema` for a `Data Warehouse`, ex
 - 1. **Level 1 (Range):** The data is first divided by `ReservationDate` into yearly partitions (`p_2023`, `p_2024`).
 - 1. **Level 2 (List):** Within each year's partition, the data is then sub-divided based on a list of `LocationID` values. we have created specific subpartitions for high-traffic locations (1 and 2) and a default subpartition for all other locations.
 
+## 3. building a materialized view that contains the customer's name and the location of their reservation. The view is designed to be updated incrementally to ensure the data is always current without the performance cost of a full rebuild.
+![3.3.sql](md/3.3.sql.md)
+## Justification
+- A materialized view is used here to improve query performance. By pre-calculating and storing the join and aggregation results, the database can retrieve the required information almost instantly, which is ideal for reporting dashboards or frequently executed queries.
 ## 4. Show the Number of Reservations grouped by `(Location, Occasion, Customer)`
 ![3.4.sql](md/3.4.sql.md)
 ![](attachments/Pasted%20image%2020251229230844.png)
@@ -102,6 +106,6 @@ Designing the appropriate `Multidimensional Schema` for a `Data Warehouse`, ex
 ![3.5.sql](md/3.5.sql.md)
 ![](attachments/Pasted%20image%2020251229231604.png)
 
-## 6 
+## 6. Finding the relationship between Occassion and Reservation Location
 ![3.6.sql](md/3.6.sql.md)
 ![](attachments/Pasted%20image%2020251229233741.png)
